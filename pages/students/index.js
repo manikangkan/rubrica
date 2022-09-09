@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import AddStudent from "../../components/AddStudent.form";
+import baseURL from "../../utils/baseURL";
 
 const StudentsPage = ({ studentsList }) => {
   // console.table(studentsList);
@@ -19,7 +20,7 @@ const StudentsPage = ({ studentsList }) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await axios.get("http://localhost:3000/api/students");
+  const res = await axios.get(`${baseURL}/api/students`);
   const { data } = await res.data;
   return {
     props: {

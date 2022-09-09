@@ -1,4 +1,5 @@
 import axios from "axios";
+import baseURL from "../../utils/baseURL";
 
 const StudentPage = ({ student }) => {
   console.table(student);
@@ -18,7 +19,7 @@ const StudentPage = ({ student }) => {
 
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
-  const res = await axios.get(`http://localhost:3000/api/students/${id}`);
+  const res = await axios.get(`${baseURL}/api/students/${id}`);
   const { data } = await res.data;
   return {
     props: {
