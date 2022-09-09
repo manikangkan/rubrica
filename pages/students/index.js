@@ -6,6 +6,10 @@ import baseURL from "../../utils/baseURL";
 const StudentsPage = ({ studentsList }) => {
   // console.table(studentsList);
 
+  if (studentsList?.length === 0) {
+    return <h1>No students found</h1>;
+  }
+
   return (
     <section>
       <AddStudent />
