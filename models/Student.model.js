@@ -17,6 +17,15 @@ const studentSchema = new mongoose.Schema(
     projectDescription: {
       type: String,
     },
+    guides: {
+      type: [String],
+    },
+    marksReceived: {
+      type: [Number],
+    },
+    evoluteBy: {
+      type: [String],
+    },
   },
   {
     timestamps: true,
