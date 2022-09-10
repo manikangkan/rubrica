@@ -1,25 +1,32 @@
 import axios from "axios";
 import Link from "next/link";
-import AddStudent from "../../components/AddStudent.form";
+import { useState } from "react";
+import AddStudent from "../../components/students/AddStudent.form";
+import SearchStudent from "../../components/students/SearchStudent.form";
 import baseURL from "../../utils/baseURL";
 
 const StudentsPage = ({ studentsList }) => {
   // console.table(studentsList);
+
+  const [addStudent, setAddStudent] = useState(false);
 
   if (studentsList?.length === 0) {
     return <h1>No students found</h1>;
   }
 
   return (
-    <section>
-      <AddStudent />
-
+    <>
+      <div className="flex justify-between items-center">
+        <SearchStudent />
+        <button onClick={() => setAddStudent(!addStudent)}>Add</button>
+      </div>
+      {addStudent && <AddStudent setAddStudent={setAddStudent} />}
       {studentsList?.map((student) => (
         <Link href={`/students/${student._id}`}>
           <div key={student._id}>{student.name}</div>
         </Link>
       ))}
-    </section>
+    </>
   );
 };
 

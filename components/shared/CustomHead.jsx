@@ -33,8 +33,12 @@ const CustomHead = ({ title }) => {
         content="Create, share and evalute rubrics for your classroom, school, or district.Create, share and evalute rubrics for your classroom, school, or district."
       />
       <meta property="twitter:image" content="https://imgur.com/e0p2qaM.png" />
-      <link
+      {/* <link
         href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic"
+        rel="stylesheet"
+      /> */}
+      <link
+        href="https://static.canva.com/web/static_font_4.ltr.css"
         rel="stylesheet"
       />
     </Head>

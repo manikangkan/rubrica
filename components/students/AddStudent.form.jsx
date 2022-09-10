@@ -1,0 +1,79 @@
+import { useState } from "react";
+
+const AddStudent = ({ setAddStudent }) => {
+  const [formData, setFormData] = useState({
+    names: "",
+    projectTitle: "",
+    projectDescription: "",
+    rollNumbers: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value.includes(",")
+        ? e.target.value.split(",").map((item) => item.trim())
+        : e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  return (
+    <div className="bg-white absolute right-0 top-0 bottom-0 h-full max-w-sm p-4 space-y-4">
+      <h4>Add new student deatails</h4>
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="space-y-2">
+          <label htmlFor="invitationEmail">Developers name</label>
+          <input
+            type="text"
+            placeholder="Eg. Manikangkan Das, Bidipta Saikia"
+            name="names"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-y-2">
+          <label htmlFor="invitationEmail">Project title</label>
+          <input
+            type="text"
+            placeholder="Eg. Rubrica - 21st century rubric builder"
+            name="projectTitle"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-y-2">
+          <label htmlFor="invitationEmail">Project description</label>
+          <textarea
+            name="projectDescription"
+            onChange={handleChange}
+            defaultValue={
+              "Eg. A web app that allows users to create and share their own stories"
+            }
+          />
+        </div>
+        <div className="space-y-2">
+          <label htmlFor="invitationEmail">Developers roll numbers</label>
+          <input
+            type="text"
+            placeholder="Eg. 190102020, 190102021"
+            name="rollNumbers"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-x-2">
+          <button type="submit">Add</button>
+          <button
+            className="bg-transparent text-slate-800"
+            onClick={() => setAddStudent(false)}>
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default AddStudent;

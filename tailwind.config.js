@@ -12,7 +12,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
+        // sans: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
+        sans: ["Canva Sans", ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
         "hero-pattern": "url('../public/assets/landingPagePattern.png')",
