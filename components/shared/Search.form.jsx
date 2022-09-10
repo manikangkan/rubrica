@@ -1,4 +1,4 @@
-const SearchStudent = () => {
+const Search = () => {
   return (
     <form>
       <input type="text" placeholder="Search" />
@@ -6,4 +6,4 @@ const SearchStudent = () => {
   );
 };
 
-export default SearchStudent;
+export default Search;

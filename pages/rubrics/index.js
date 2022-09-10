@@ -1,5 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
+import Search from "../../components/shared/Search.form";
 import baseURL from "../../utils/baseURL";
 
 const RubricsPage = ({ rubricsList }) => {
@@ -8,14 +9,17 @@ const RubricsPage = ({ rubricsList }) => {
   }
 
   return (
-    <section>
-      <h1>Rubrics Page</h1>
+    <>
+      <div className="flex justify-between items-center">
+        <Search />
+        <button onClick={() => setAddStudent(!addStudent)}>Add</button>
+      </div>
       {rubricsList?.map((rubric) => (
         <Link href={`/rubrics/${rubric._id}`}>
           <div key={rubric._id}>{rubric.name}</div>
         </Link>
       ))}
-    </section>
+    </>
   );
 };
 

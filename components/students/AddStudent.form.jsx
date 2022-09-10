@@ -24,7 +24,14 @@ const AddStudent = ({ setAddStudent }) => {
 
   return (
     <div className="bg-white absolute right-0 top-0 bottom-0 h-full max-w-sm p-4 space-y-4">
-      <h4>Add new student deatails</h4>
+      <div className="flex justify-between items-center">
+        <h4>Add new student details</h4>
+        <button
+          className="bg-transparent text-slate-800"
+          onClick={() => setAddStudent(false)}>
+          Close
+        </button>
+      </div>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <label htmlFor="invitationEmail">Developers name</label>
@@ -63,14 +70,7 @@ const AddStudent = ({ setAddStudent }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="space-x-2">
-          <button type="submit">Add</button>
-          <button
-            className="bg-transparent text-slate-800"
-            onClick={() => setAddStudent(false)}>
-            Close
-          </button>
-        </div>
+        <button type="submit">Add</button>
       </form>
     </div>
   );

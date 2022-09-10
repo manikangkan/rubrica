@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import AddStudent from "../../components/students/AddStudent.form";
-import SearchStudent from "../../components/students/SearchStudent.form";
+import Search from "../../components/shared/Search.form";
 import baseURL from "../../utils/baseURL";
 
 const StudentsPage = ({ studentsList }) => {
@@ -17,7 +17,7 @@ const StudentsPage = ({ studentsList }) => {
   return (
     <>
       <div className="flex justify-between items-center">
-        <SearchStudent />
+        <Search />
         <button onClick={() => setAddStudent(!addStudent)}>Add</button>
       </div>
       {addStudent && <AddStudent setAddStudent={setAddStudent} />}
