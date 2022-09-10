@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 @layer components {
-  h1,h4
+  h1,
+  h4,
   label,
   p,
   input {
-    @apply text-slate-800;
+    @apply text-slate-800 leading-relaxed;
   }
 
   h1 {
@@ -28,7 +29,7 @@
     !ring-0 !outline-none !bg-transparent;
   }
 
-  textarea{
+  textarea {
     @apply h-24;
   }
 
