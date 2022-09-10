@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         sans: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        "hero-pattern": "url('../public/assets/landingPagePattern.png')",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
