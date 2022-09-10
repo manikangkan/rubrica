@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import baseURL from "../../utils/baseURL";
 
 const AuthForm = ({ data }) => {
   const [formData, setFormData] = useState(
@@ -7,6 +9,7 @@ const AuthForm = ({ data }) => {
       return acc;
     }, {})
   );
+  const [response, setResponse] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -15,21 +18,26 @@ const AuthForm = ({ data }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-
-    setFormData(
-      data.fields.reduce((acc, field) => {
-        acc[field.name] = "";
-        return acc;
-      }, {})
-    );
+    try {
+      const { data } = await axios.post(`${baseURL}/api/auth`, formData);
+      console.warn("data", data);
+      setResponse(data.msg);
+      // setFormData(
+      //   data.fields.reduce((acc, field) => {
+      //     acc[field.name] = "";
+      //     return acc;
+      //   }, {})
+      // );
+    } catch (error) {
+      console.warn(error);
+      setResponse(error.response.data.msg);
+    }
   };
-
   return (
     <div className="w-1/3 space-y-4">
-      <h4>{data.title}</h4>
+      <h4>{response ? response : data.title}</h4>
       <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
         {data.fields.map((field, index) => {
           return (

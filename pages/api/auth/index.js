@@ -24,12 +24,6 @@ export default async (req, res) => {
     case "POST":
       try {
         const { email, password } = req.body;
-        if (!email && !password && password.length < 6) {
-          return res.status(400).json({
-            success: false,
-            msg: "Please enter all fields",
-          });
-        }
 
         const user = await User.findOne({
           email: email.toLowerCase(),
@@ -37,7 +31,7 @@ export default async (req, res) => {
         if (!user) {
           return res.status(400).json({
             success: false,
-            msg: "User does not exist",
+            msg: "Invalid credentials",
           });
         }
 
@@ -54,11 +48,12 @@ export default async (req, res) => {
         res.status(201).json({
           success: true,
           token,
+          msg: "Hold on, we're logging you in...",
         });
       } catch (error) {
         res.status(500).json({
           success: false,
-          msg: "Server error",
+          msg: "Server error, please try again later",
           error: error.message,
         });
       }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { authFormState } from "../../data/authFormState";
 import AuthForm from "./Auth.form";
 
-const Auth = ({ setIsAuthModalOpen }) => {
+const AuthModal = ({ setIsAuthModalOpen }) => {
   const [isAdministratorLoggedin, setIsAdministratorLoggedin] = useState(false);
   return (
     <div className="h-full w-full fixed top-0 flex flex-col justify-end">
@@ -25,4 +25,4 @@ const Auth = ({ setIsAuthModalOpen }) => {
   );
 };
 
-export default Auth;
+export default AuthModal;

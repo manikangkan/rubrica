@@ -1,6 +1,6 @@
 import Navbar from "../components/landingPage/Navbar";
 import Main from "../components/landingPage/Main";
-import Auth from "../components/landingPage/Auth.modal";
+import AuthModal from "../components/landingPage/Auth.modal";
 import { useState } from "react";
 
 const LandingPage = () => {
@@ -12,7 +12,7 @@ const LandingPage = () => {
         <Main setIsAuthModalOpen={setIsAuthModalOpen} />
       </div>
       {/* auth modal for administration login or email invitation */}
-      {isAuthModalOpen && <Auth setIsAuthModalOpen={setIsAuthModalOpen} />}
+      {isAuthModalOpen && <AuthModal setIsAuthModalOpen={setIsAuthModalOpen} />}
     </div>
   );
 };
