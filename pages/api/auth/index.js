@@ -16,7 +16,7 @@ export default async (req, res) => {
       } catch (error) {
         res.status(500).json({
           success: false,
-          msg: "Server error",
+          msg: "Server error, please try again later",
         });
       }
       break;
