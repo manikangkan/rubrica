@@ -1,11 +1,18 @@
 import Navbar from "../components/landingPage/Navbar";
 import Main from "../components/landingPage/Main";
+import Auth from "../components/landingPage/Auth.modal";
+import { useState } from "react";
 
 const LandingPage = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   return (
-    <div className="max-w-7xl mx-auto h-screen overflow-hidden">
-      <Navbar />
-      <Main />
+    <div className="bg-slate-50 h-screen overflow-hidden relative">
+      <div className="max-w-7xl mx-auto h-full">
+        <Navbar setIsAuthModalOpen={setIsAuthModalOpen} />
+        <Main setIsAuthModalOpen={setIsAuthModalOpen} />
+      </div>
+      {/* auth modal for administration login or email invitation */}
+      {isAuthModalOpen && <Auth setIsAuthModalOpen={setIsAuthModalOpen} />}
     </div>
   );
 };

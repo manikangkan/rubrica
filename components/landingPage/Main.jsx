@@ -1,4 +1,4 @@
-const Main = () => {
+const Main = ({ setIsAuthModalOpen }) => {
   return (
     <div className="h-full flex flex-col items-center justify-center space-y-8">
       <div className="text-center space-y-2">
@@ -11,7 +11,11 @@ const Main = () => {
           and evolve.
         </p>
       </div>
-      <button className="rounded-full text-lg">Get started now</button>
+      <button
+        className="rounded-full text-lg"
+        onClick={() => setIsAuthModalOpen(true)}>
+        Get started now
+      </button>
     </div>
   );
 };
