@@ -20,23 +20,30 @@ const AuthForm = ({ data }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const { data } = await axios.post(`${baseURL}/api/auth`, formData);
-      console.warn("data", data);
-      setResponse(data.msg);
-      // setFormData(
-      //   data.fields.reduce((acc, field) => {
-      //     acc[field.name] = "";
-      //     return acc;
-      //   }, {})
-      // );
-    } catch (error) {
-      console.warn(error);
-      setResponse(error.response.data.msg);
+    if (data.name === "login") {
+      try {
+        const { data } = await axios.post(`${baseURL}/api/auth`, formData);
+        console.warn("data", data);
+        setResponse(data.msg);
+
+        // setFormData(
+        //   data.fields.reduce((acc, field) => {
+        //     acc[field.name] = "";
+        //     return acc;
+        //   }, {})
+        // );
+
+        localStorage.setItem("rubrica", data.token);
+      } catch (error) {
+        console.warn(error);
+        setResponse(error.response?.data.msg);
+      }
+    } else {
+      console.warn("formData", formData);
     }
   };
   return (
-    <div className="w-1/3 space-y-4">
+    <div className="sm:w-1/2 md:w-1/3 space-y-4">
       <h4>{response ? response : data.title}</h4>
       <form className="flex flex-col space-y-2" onSubmit={handleSubmit}>
         {data.fields.map((field, index) => {

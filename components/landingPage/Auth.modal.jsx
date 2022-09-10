@@ -3,7 +3,10 @@ import { authFormState } from "../../data/authFormState";
 import AuthForm from "./Auth.form";
 
 const AuthModal = ({ setIsAuthModalOpen }) => {
-  const [isAdministratorLoggedin, setIsAdministratorLoggedin] = useState(false);
+  // catch the token from localStorage and set it to the state
+  const [isAdministratorLoggedin, setIsAdministratorLoggedin] = useState(
+    localStorage.getItem("rubrica")
+  );
   return (
     <div className="h-full w-full fixed top-0 flex flex-col justify-end">
       {/* form */}
