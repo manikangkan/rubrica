@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer components {
+  h1,
+  label,
+  p,
+  input {
+    @apply text-slate-800;
+  }
+
   h1 {
     @apply text-4xl font-bold;
   }
@@ -12,10 +19,11 @@
   }
 
   input {
-    @apply h-12 !w-full !rounded !px-6 !text-sm !border-slate-300;
+    @apply h-12 !w-full !rounded !px-6 !text-sm !border-slate-300 focus:!border-slate-800
+    !ring-0 !outline-none;
   }
 
   button {
-    @apply bg-black border border-black text-white font-bold h-12 px-6 rounded text-sm;
+    @apply bg-slate-800 border border-slate-800 text-white font-bold h-12 px-6 rounded text-sm;
   }
 }

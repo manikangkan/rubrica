@@ -10,9 +10,9 @@ const Auth = ({ setIsAuthModalOpen }) => {
       </div>
       {/* overlay */}
       <div
-        className="w-full h-full bg-black/50 absolute cursor-pointer text-white flex justify-center items-center"
+        className="w-full h-full bg-black/50 absolute cursor-pointer text-white flex justify-center items-center backdrop-blur-sm"
         onClick={() => setIsAuthModalOpen(false)}>
-        <p>Tap here to close the modal</p>
+        <p className="text-white">Tap here to close the modal</p>
       </div>
     </div>
   );
