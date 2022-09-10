@@ -15,7 +15,7 @@ const RubricsPage = ({ rubricsList }) => {
         <button onClick={() => setAddStudent(!addStudent)}>Add</button>
       </div>
       {rubricsList?.map((rubric) => (
-        <Link href={`/rubrics/${rubric._id}`}>
+        <Link href={`/rubrics/${rubric._id}`} key={rubric._id}>
           <div key={rubric._id}>{rubric.name}</div>
         </Link>
       ))}
