@@ -36,6 +36,12 @@ const AuthForm = ({ data }) => {
         const { data } = await axios.post(`${baseURL}/api/evoluters`, formData);
         console.warn("data", data);
         setResponse(data.msg);
+
+        // below nodemail code will be triggered only if the above axios call is successful with site url and data._id to data.email
+
+        
+
+        
       } catch (error) {
         console.warn(error);
         setResponse(error.response?.data.msg);

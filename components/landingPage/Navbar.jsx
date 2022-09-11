@@ -4,7 +4,7 @@ const Navbar = ({ evoluterName,setIsAuthModalOpen }) => {
   return (
     <nav className="flex items-center justify-between m-4">
       <Logo />
-      {false ? (
+      {!false ? (
         <div className="space-x-4">
           <button
             className="bg-slate-200 border-none text-black"
