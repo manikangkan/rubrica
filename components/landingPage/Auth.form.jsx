@@ -26,20 +26,20 @@ const AuthForm = ({ data }) => {
         console.warn("data", data);
         setResponse(data.msg);
 
-        // setFormData(
-        //   data.fields.reduce((acc, field) => {
-        //     acc[field.name] = "";
-        //     return acc;
-        //   }, {})
-        // );
-
         localStorage.setItem("rubrica", data.token);
       } catch (error) {
         console.warn(error);
         setResponse(error.response?.data.msg);
       }
     } else {
-      console.warn("formData", formData);
+      try {
+        const { data } = await axios.post(`${baseURL}/api/evoluters`, formData);
+        console.warn("data", data);
+        setResponse(data.msg);
+      } catch (error) {
+        console.warn(error);
+        setResponse(error.response?.data.msg);
+      }
     }
   };
   return (

@@ -3,8 +3,14 @@ export const authFormState = [
     title: "Invite for evolution",
     fields: [
       {
-        label: "Email",
-        placeholder: "Invitation email",
+        name: "name",
+        label: "Name",
+        type: "text",
+        placeholder: "Evoluter name eg. Manikangkan Das",
+      },
+      {
+        label: "Invitation Email",
+        placeholder: "Email eg. manikangkan.das@rubrica.com",
         type: "email",
         name: "email",
       },
