@@ -12,7 +12,7 @@ const AuthModal = ({ setIsAuthModalOpen }) => {
       {/* form */}
       <div className="h-1/2 bg-white flex flex-col justify-center items-center z-50 relative">
         <div className="w-20 h-1 rounded-full bg-black absolute top-2" />
-        {isAdministratorLoggedin ? (
+        {false ? (
           <AuthForm data={authFormState[0]} />
         ) : (
           <AuthForm data={authFormState[1]} />

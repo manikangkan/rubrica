@@ -1,3 +1,4 @@
+import authMiddleware from "../../../middleware/auth.middleware";
 import Evoluter from "../../../models/Evoluter.model";
 import dbConnect from "../../../server-utils/connectDB";
 import { sendEmail } from "../../../server-utils/sendEmail";
@@ -5,13 +6,13 @@ import baseURL from "../../../utils/baseURL";
 
 export default async (req, res) => {
   const { method } = req;
-
-  dbConnect();
+  authMiddleware(req, res);
+  await dbConnect();
 
   switch (method) {
     case "GET":
       try {
-        const evoluters = await Evoluter.find({});
+        const evoluters = await Evoluter.find({}).sort({ createdAt: -1 });
         res.status(200).json({ success: true, data: evoluters });
       } catch (error) {
         res.status(400).json({ success: false });
@@ -39,7 +40,7 @@ export default async (req, res) => {
           await sendEmail({
             email: newEvoluter.email,
             subject: "Welcome to Rubrica",
-            message: `Hi ${newEvoluter.name}, welcome to Rubrica. Please click on the link below to activate your account. ${baseURL}/activate/${newEvoluter._id}`,
+            message: `Hi ${newEvoluter.name}, welcome to Rubrica. Please click on the link below to activate your account. ${baseURL}/home/${newEvoluter._id}`,
           });
 
           res.status(201).json({

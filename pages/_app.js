@@ -5,7 +5,7 @@ import CustomHead from "../components/shared/CustomHead";
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <CustomHead title={`Manikangkan Das | ${pageProps.title}`} />
+      <CustomHead title={`Rubrica | ${pageProps.title}`} />
       <Component {...pageProps} />
     </Layout>
   );

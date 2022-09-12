@@ -1,10 +1,10 @@
 import Logo from "../shared/Logo";
 
-const Navbar = ({ evoluterName,setIsAuthModalOpen }) => {
+const Navbar = ({ adminName,setIsAuthModalOpen }) => {
   return (
     <nav className="flex items-center justify-between m-4">
       <Logo />
-      {!false ? (
+      {true ? (
         <div className="space-x-4">
           <button
             className="bg-slate-200 border-none text-black"
@@ -19,7 +19,7 @@ const Navbar = ({ evoluterName,setIsAuthModalOpen }) => {
         </div>
       ) : (
         <p>
-          Logged in as <strong>{evoluterName}</strong>
+          Admin logged in as <strong>{adminName}</strong>
         </p>
       )}
     </nav>

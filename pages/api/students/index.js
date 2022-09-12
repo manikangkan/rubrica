@@ -4,7 +4,7 @@ import dbConnect from "../../../server-utils/connectDB";
 export default async (req, res) => {
   const { method } = req;
 
-  dbConnect();
+  await dbConnect();
 
   switch (method) {
     case "GET":

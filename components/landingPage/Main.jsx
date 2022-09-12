@@ -14,19 +14,11 @@ const Main = ({ setIsAuthModalOpen }) => {
           and evolve.
         </p>
       </div>
-      {true ? (
-        <button
-          className="rounded-full text-lg h-16 px-10"
-          onClick={() => router.push("/home")}>
-          Start evaluating
-        </button>
-      ) : (
-        <button
-          className="rounded-full text-lg h-16 px-10"
-          onClick={() => setIsAuthModalOpen(true)}>
-          Get started now
-        </button>
-      )}
+      <button
+        className="rounded-full text-lg h-16 px-10"
+        onClick={() => setIsAuthModalOpen(true)}>
+        Get started now
+      </button>
     </div>
   );
 };

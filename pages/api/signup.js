@@ -5,12 +5,12 @@ import bcrypt from "bcrypt";
 export default async (req, res) => {
   const { method } = req;
 
-  dbConnect();
+  await dbConnect();
 
   switch (method) {
     case "POST":
       try {
-        const { email, password } = req.body;
+        const { name, email, password } = req.body;
         if (!email && !password && password.length < 6) {
           return res.status(400).json({
             success: false,
@@ -31,6 +31,7 @@ export default async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = await User.create({
+          name,
           email: email.toLowerCase(),
           password: hashedPassword,
         });
