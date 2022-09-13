@@ -1,4 +1,4 @@
-import authMiddleware from "../../../middleware/auth.middleware";
+import auth from "../../../middleware/auth.middleware";
 import Evoluter from "../../../models/Evoluter.model";
 import dbConnect from "../../../server-utils/connectDB";
 import { sendEmail } from "../../../server-utils/sendEmail";
@@ -6,7 +6,7 @@ import baseURL from "../../../utils/baseURL";
 
 export default async (req, res) => {
   const { method } = req;
-  authMiddleware(req, res);
+  auth(req, res);
   await dbConnect();
 
   switch (method) {
