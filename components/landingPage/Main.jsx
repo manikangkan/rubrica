@@ -11,7 +11,7 @@ const Main = ({ setIsAuthModalOpen }) => {
         </h1>
         <p>
           Create rubric with a simple drag and drop interface, evalute, automate
-          and evolve.
+          and evolve😃
         </p>
       </div>
       <button
