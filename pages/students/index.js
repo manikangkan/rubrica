@@ -22,7 +22,7 @@ const StudentsPage = ({ studentsList }) => {
       </div>
       {addStudent && <AddStudent setAddStudent={setAddStudent} />}
       {studentsList?.map((student) => (
-        <Link href={`/students/${student._id}`}>
+        <Link href={`/students/${student._id}`} key={student._id}>
           <div key={student._id}>{student.name}</div>
         </Link>
       ))}
