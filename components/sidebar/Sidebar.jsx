@@ -15,7 +15,7 @@ const Sidebar = () => {
         {sidebarLinks.map((link) => (
           <Link href={`${link.path}/${id}`} key={link.name} passHref>
             <a>
-              <SidebarLink name={link.name} href={link.path} />
+              <SidebarLink name={link.name} path={link.path} />
             </a>
           </Link>
         ))}

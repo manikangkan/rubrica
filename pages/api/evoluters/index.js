@@ -6,13 +6,13 @@ import baseURL from "../../../utils/baseURL";
 
 export default async (req, res) => {
   const { method } = req;
-  const isVerified = verifyAuthToken(req, res);
-  if (!isVerified) {
-    return res.status(401).json({
-      success: false,
-      msg: "You are not authorized to access this route",
-    });
-  }
+  // const isVerified = verifyAuthToken(req, res);
+  // if (!isVerified) {
+  //   return res.status(401).json({
+  //     success: false,
+  //     msg: "You are not authorized to access this route",
+  //   });
+  // }
 
   await dbConnect();
 

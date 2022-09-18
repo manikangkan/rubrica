@@ -19,4 +19,8 @@ export const sidebarLinks = [
     name: "Results",
     path: "/results",
   },
+  {
+    name: "Evoluters",
+    path: "/evoluters",
+  },
 ];

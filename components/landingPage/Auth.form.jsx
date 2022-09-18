@@ -2,7 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import baseURL from "../../utils/baseURL";
 
-const AuthForm = ({ data }) => {
+const AuthForm = ({ data, setIsAuthModalOpen }) => {
+  const isAdministratorLoggedIn =
+    typeof window !== "undefined" && localStorage.getItem("rubrica");
   const [formData, setFormData] = useState(
     data.fields.reduce((acc, field) => {
       acc[field.name] = "";
@@ -20,24 +22,28 @@ const AuthForm = ({ data }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (data.name === "login") {
+    if (isAdministratorLoggedIn) {
       try {
-        const { data } = await axios.post(`${baseURL}/api/auth`, formData);
-        console.warn("data", data);
-        setResponse(data.msg);
-
-        localStorage.setItem("rubrica", data.token);
+        const url = `${baseURL}/api/evoluters`;
+        const payload = { ...formData };
+        const headers = {
+          headers: {
+            Authorization: isAdministratorLoggedIn,
+          },
+        };
+        const response = await axios.post(url, payload, headers);
+        setResponse(response.data.msg);
       } catch (error) {
-        console.warn(error);
         setResponse(error.response?.data.msg);
       }
     } else {
       try {
-        const { data } = await axios.post(`${baseURL}/api/evoluters`, formData);
-        console.warn("data", data);
+        const { data } = await axios.post(`${baseURL}/api/auth`, formData);
         setResponse(data.msg);
+
+        localStorage.setItem("rubrica", data.token);
+        setIsAuthModalOpen(false);
       } catch (error) {
-        console.warn(error);
         setResponse(error.response?.data.msg);
       }
     }
