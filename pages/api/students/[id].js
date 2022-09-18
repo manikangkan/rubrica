@@ -1,4 +1,4 @@
-import auth from "../../../middleware/auth.middleware";
+import verifyAuthToken from "../../../middleware/verifyAuthToken.middleware";
 import Student from "../../../models/Student.model";
 import dbConnect from "../../../server-utils/connectDB";
 
@@ -24,7 +24,7 @@ export default async (req, res) => {
     // @desc    Update a student
     // @access  Private
     case "PUT":
-      auth(req, res);
+      verifyAuthToken(req, res);
       try {
         const student = await Student.findByIdAndUpdate(
           req.query.id,
@@ -44,7 +44,7 @@ export default async (req, res) => {
     // @desc    Delete a student
     // @access  Private
     case "DELETE":
-      auth(req, res);
+      verifyAuthToken(req, res);
       try {
         await Student.deleteOne({ _id: req.query.id });
         res.status(200).json({ success: true, data: {} });

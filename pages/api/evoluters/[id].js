@@ -1,10 +1,10 @@
-import auth from "../../../middleware/auth.middleware";
+import verifyAuthToken from "../../../middleware/verifyAuthToken.middleware";
 import Evoluter from "../../../models/Evoluter.model";
 import dbConnect from "../../../server-utils/connectDB";
 
 export default async (req, res) => {
   const { method } = req;
-  auth(req, res);
+  verifyAuthToken(req, res);
   await dbConnect();
 
   switch (method) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { authFormState } from "../../data/authFormState";
-import AuthForm from "./Auth.form";
+import AuthForm from "./verifyAuthTokenform";
 
 const AuthModal = ({ setIsAuthModalOpen }) => {
   // catch the token from localStorage and set it to the state

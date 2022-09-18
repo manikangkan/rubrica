@@ -1,4 +1,4 @@
-import auth from "../../../middleware/auth.middleware";
+import verifyAuthToken from "../../../middleware/verifyAuthToken.middleware";
 import Rubric from "../../../models/Rubric.model";
 import dbConnect from "../../../server-utils/connectDB";
 
@@ -24,7 +24,7 @@ export default async (req, res) => {
     // @desc    Create a rubric
     // @access  Private
     case "POST":
-      auth(req, res);
+      verifyAuthToken(req, res);
       try {
         const rubric = await Rubric.create(req.body);
         res.status(201).json({ success: true, data: rubric });

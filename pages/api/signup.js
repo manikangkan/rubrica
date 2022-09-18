@@ -1,7 +1,7 @@
 import User from "../../models/User.model";
 import dbConnect from "../../server-utils/connectDB";
 import bcrypt from "bcrypt";
-import generateAuthToken from "../../middleware/genereateAuthToken.middleware";
+import generateAuthToken from "../../middleware/generateAuthToken.middleware";
 
 export default async (req, res) => {
   const { method } = req;

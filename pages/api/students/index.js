@@ -1,4 +1,4 @@
-import auth from "../../../middleware/auth.middleware";
+import verifyAuthToken from "../../../middleware/verifyAuthToken.middleware";
 import Student from "../../../models/Student.model";
 import dbConnect from "../../../server-utils/connectDB";
 
@@ -24,7 +24,7 @@ export default async (req, res) => {
     // @desc    Create a student
     // @access  Private
     case "POST":
-      auth(req, res);
+      verifyAuthToken(req, res);
       try {
         const student = await Student.create(req.body);
 

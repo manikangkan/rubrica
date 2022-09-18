@@ -1,10 +1,10 @@
-import auth from "../../../middleware/auth.middleware";
+import verifyAuthToken from "../../../middleware/verifyAuthToken.middleware";
 import Rubric from "../../../models/Rubric.model";
 import dbConnect from "../../../server-utils/connectDB";
 
 export default async (req, res) => {
   const { method } = req;
-  auth(req, res);
+  verifyAuthToken(req, res);
 
   await dbConnect();
 
@@ -25,7 +25,7 @@ export default async (req, res) => {
     // @desc    Update specific rubric
     // @access  Private
     case "PUT":
-      auth(req, res);
+      verifyAuthToken(req, res);
       try {
         const rubric = await Rubric.findByIdAndUpdate(req.query.id, req.body, {
           new: true,
@@ -41,7 +41,7 @@ export default async (req, res) => {
     // @desc    Delete specific rubric
     // @access  Private
     case "DELETE":
-      auth(req, res);
+      verifyAuthToken(req, res);
       try {
         await Rubric.deleteOne({ _id: req.query.id });
         res.status(200).json({ success: true, data: {} });
