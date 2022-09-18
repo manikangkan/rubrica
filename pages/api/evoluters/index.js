@@ -58,7 +58,7 @@ export default async (req, res) => {
           console.log(error);
           res.status(500).json({
             success: false,
-            msg: "Error sending invitation email",
+            msg: "Error sending invitation email, please let the admin know.",
           });
         }
       } catch (error) {
