@@ -2,13 +2,17 @@ import User from "../../../models/User.model";
 import dbConnect from "../../../server-utils/connectDB";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import auth from "../../../middleware/auth.middleware";
+import generateAuthToken from "../../../middleware/genereateAuthToken.middleware";
 
 export default async (req, res) => {
   const { method } = req;
-
   await dbConnect();
 
   switch (method) {
+    // @route   GET api/auth
+    // @desc    Fetch all admin users
+    // @access  Public
     case "GET":
       try {
         const users = await User.find({});
@@ -21,6 +25,9 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   POST api/auth
+    // @desc    Authenticate user & get token
+    // @access  Public
     case "POST":
       try {
         const { email, password } = req.body;
@@ -43,7 +50,7 @@ export default async (req, res) => {
           });
         }
 
-        const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+        const token = generateAuthToken(user._id);
 
         res.status(201).json({
           success: true,

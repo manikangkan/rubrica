@@ -1,12 +1,16 @@
+import auth from "../../../middleware/auth.middleware";
 import User from "../../../models/User.model";
 import dbConnect from "../../../server-utils/connectDB";
 
 export default async (req, res) => {
   const { method } = req;
-
+  auth(req, res);
   await dbConnect();
 
   switch (method) {
+    // @route   GET api/auth/:id
+    // @desc    Get specific admin user
+    // @access  Private
     case "GET":
       try {
         const user = await User.findById(req.query.id);
@@ -19,6 +23,9 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   GET api/auth/:id
+    // @desc    Update specific admin user
+    // @access  Private
     case "PUT":
       try {
         const user = await User.findByIdAndUpdate(req.query.id, req.body, {
@@ -34,6 +41,9 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   GET api/auth/:id
+    // @desc    Delete specific admin user
+    // @access  Private
     case "DELETE":
       try {
         const deletedUser = await User.deleteOne({ _id: req.query.id });

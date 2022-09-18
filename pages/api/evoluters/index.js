@@ -10,6 +10,9 @@ export default async (req, res) => {
   await dbConnect();
 
   switch (method) {
+    // @route   GET api/evoluters
+    // @desc    Fetch all evoluters
+    // @access  Private
     case "GET":
       try {
         const evoluters = await Evoluter.find({}).sort({ createdAt: -1 });
@@ -19,6 +22,9 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   GET api/evoluters
+    // @desc    Create new evoluter
+    // @access  Private
     case "POST":
       try {
         const { name, email } = req.body;

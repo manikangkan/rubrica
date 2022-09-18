@@ -1,6 +1,7 @@
 import User from "../../models/User.model";
 import dbConnect from "../../server-utils/connectDB";
 import bcrypt from "bcrypt";
+import generateAuthToken from "../../middleware/genereateAuthToken.middleware";
 
 export default async (req, res) => {
   const { method } = req;
@@ -8,6 +9,9 @@ export default async (req, res) => {
   await dbConnect();
 
   switch (method) {
+    // @route   POST api/signup
+    // @desc    Create a user admin
+    // @access  Public
     case "POST":
       try {
         const { name, email, password } = req.body;
@@ -36,11 +40,19 @@ export default async (req, res) => {
           password: hashedPassword,
         });
 
-        res.status(201).json({ success: true, data: newUser });
+        const token = generateAuthToken(newUser._id);
+        console.log("token", token);
+
+        res.status(201).json({
+          success: true,
+          data: newUser,
+          token,
+        });
       } catch (error) {
         res.status(500).json({
           success: false,
           msg: "Server error, please try again later",
+          error: error.message,
         });
       }
       break;

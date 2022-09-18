@@ -1,3 +1,4 @@
+import auth from "../../../middleware/auth.middleware";
 import Student from "../../../models/Student.model";
 import dbConnect from "../../../server-utils/connectDB";
 
@@ -7,6 +8,9 @@ export default async (req, res) => {
   await dbConnect();
 
   switch (method) {
+    // @route   GET api/students
+    // @desc    Fetch all students
+    // @access  Public
     case "GET":
       try {
         const students = await Student.find({});
@@ -16,7 +20,11 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   POST api/students
+    // @desc    Create a student
+    // @access  Private
     case "POST":
+      auth(req, res);
       try {
         const student = await Student.create(req.body);
 

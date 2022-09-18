@@ -1,12 +1,16 @@
+import auth from "../../../middleware/auth.middleware";
 import Evoluter from "../../../models/Evoluter.model";
 import dbConnect from "../../../server-utils/connectDB";
 
 export default async (req, res) => {
   const { method } = req;
-
+  auth(req, res);
   await dbConnect();
 
   switch (method) {
+    // @route   GET api/evoluters/:id
+    // @desc    Get specific evoluter
+    // @access  Private
     case "GET":
       try {
         const evoluter = await Evoluter.findById(req.query.id);
@@ -16,6 +20,9 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   PUT api/evoluters/:id
+    // @desc    Update specific evoluter
+    // @access  Private
     case "PUT":
       try {
         const evoluter = await Evoluter.findByIdAndUpdate(
@@ -32,6 +39,9 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   DELETE api/evoluters/:id
+    // @desc    Delete specific evoluter
+    // @access  Private
     case "DELETE":
       try {
         const evoluter = await Evoluter.deleteOne({ _id: req.query.id });

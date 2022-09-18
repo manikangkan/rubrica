@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export default (req, res) => {
+export default function auth(req, res) {
   try {
     const token = req.headers;
     if (!token) {
@@ -28,4 +28,4 @@ export default (req, res) => {
       error: error.message,
     });
   }
-};
+}
