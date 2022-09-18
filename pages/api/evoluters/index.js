@@ -6,7 +6,14 @@ import baseURL from "../../../utils/baseURL";
 
 export default async (req, res) => {
   const { method } = req;
-  verifyAuthToken(req, res);
+  const isVerified = verifyAuthToken(req, res);
+  if (!isVerified) {
+    return res.status(401).json({
+      success: false,
+      msg: "You are not authorized to access this route",
+    });
+  }
+
   await dbConnect();
 
   switch (method) {
@@ -29,7 +36,9 @@ export default async (req, res) => {
       try {
         const { name, email } = req.body;
 
-        const evoluter = await Evoluter.findOne({ email: email.toLowerCase() });
+        const evoluter = await Evoluter.findOne({
+          email: email.toLowerCase(),
+        });
         if (evoluter) {
           return res.status(400).json({
             success: false,
