@@ -6,25 +6,25 @@ export default function verifyAuthToken(req, res) {
     if (!token) {
       return res.status(401).json({
         success: false,
-        msg: "You are not authorized to access this route1",
+        msg: "You are not authorized to access this route",
       });
     }
 
-    const { _id: userId } = jwt.verify(
+    const { userId } = jwt.verify(
       req.headers.authorization,
       process.env.TOKEN_SECRET
     );
     if (!userId) {
       return res.status(401).json({
         success: false,
-        msg: "You are not authorized to access this route2",
+        msg: "You are not authorized to access this route",
       });
     }
     req.userId = userId;
   } catch (error) {
     res.status(401).json({
       success: false,
-      msg: "You are not authorized to access this route3",
+      msg: "You are not authorized to access this route",
       error: error.message,
     });
   }
