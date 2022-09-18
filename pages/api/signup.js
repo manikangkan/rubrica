@@ -41,7 +41,6 @@ export default async (req, res) => {
         });
 
         const token = generateAuthToken(newUser._id);
-        console.log("token", token);
 
         res.status(201).json({
           success: true,

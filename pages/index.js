@@ -1,9 +1,9 @@
 import Navbar from "../components/landingPage/Navbar";
 import Main from "../components/landingPage/Main";
-import AuthModal from "../components/landingPage/verifyAuthTokenmodal";
 import { useState } from "react";
 import axios from "axios";
 import baseURL from "../utils/baseURL";
+import AuthModal from "../components/landingPage/Auth.modal";
 
 const LandingPage = ({ adminName }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);

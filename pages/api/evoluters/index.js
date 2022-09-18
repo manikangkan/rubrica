@@ -55,7 +55,6 @@ export default async (req, res) => {
             msg: "Evoluter created successfully. Please check your email to activate your account.",
           });
         } catch (error) {
-          console.log(error);
           res.status(500).json({
             success: false,
             msg: "Error sending invitation email, please let the admin know.",
