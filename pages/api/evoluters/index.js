@@ -55,7 +55,7 @@ export default async (req, res) => {
           await sendEmail({
             email: newEvoluter.email,
             subject: "Welcome to Rubrica",
-            message: `Hi ${newEvoluter.name}, welcome to Rubrica. Please click on the link below to activate your account. ${baseURL}/home/${newEvoluter._id}`,
+            message: `Hi ${newEvoluter.name}, welcome to Rubrica. Please click on the link below to activate your account. ${baseURL}/evoluters/verification/${newEvoluter._id}`,
           });
 
           res.status(201).json({

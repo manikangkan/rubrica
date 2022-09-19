@@ -19,15 +19,15 @@ const Home = ({ evoluterName }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
-  const { id } = context.query;
-  const res = await axios.get(`${baseURL}/api/evoluters/${id}`);
-  const { data } = await res.data;
-  return {
-    props: {
-      evoluterName: data.name,
-    },
-  };
-};
+// export const getServerSideProps = async (context) => {
+//   const { id } = context.query;
+//   const res = await axios.get(`${baseURL}/api/evoluters/${id}`);
+//   const { data } = await res.data;
+//   return {
+//     props: {
+//       evoluterName: data.name,
+//     },
+//   };
+// };
 
 export default Home;

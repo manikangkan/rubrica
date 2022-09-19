@@ -10,10 +10,9 @@ const evoluterSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    invitationLink: {
-      type: String,
-      required: true,
-      default: "https://www.rubrica.com",
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
   },
   {
