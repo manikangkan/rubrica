@@ -19,7 +19,13 @@ const Sidebar = () => {
           </Link>
         ))}
       </div>
-      <SidebarLink name="Sign out" />
+      <SidebarLink
+        name="Sign out"
+        onClick={() => {
+          localStorage.removeItem("rubrica");
+          router.push("/");
+        }}
+      />
     </aside>
   );
 };

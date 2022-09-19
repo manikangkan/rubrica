@@ -1,9 +1,13 @@
+import axios from "axios";
+import Link from "next/link";
+import baseURL from "../../utils/baseURL";
+
 const EvolutersPage = ({ evolutersList }) => {
   console.log(evolutersList);
   return (
     <div>
       {evolutersList?.map((evoluter) => (
-        <Link href={`/evoluter/${evoluter._id}`} key={evoluter._id}>
+        <Link href={`/evoluters/${evoluter._id}`} key={evoluter._id}>
           <div key={evoluter._id}>{evoluter.name}</div>
         </Link>
       ))}

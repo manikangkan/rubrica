@@ -3,12 +3,9 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import baseURL from "../../../utils/baseURL";
 
-const VerificationPage = ({response}) => {
- 
-
+const VerificationPage = ({ response }) => {
   return <div>{response ? <h1>{response}</h1> : <h1>Verifying...</h1>}</div>;
 };
-
 
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
@@ -18,6 +15,7 @@ export const getServerSideProps = async (context) => {
       id,
     });
     const { data } = await res.data;
+    localStorage.setItem("rubrica-evoluter", data.token);
     response = data.msg;
   } catch (error) {
     console.log(error);
@@ -29,6 +27,5 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
-
 
 export default VerificationPage;
