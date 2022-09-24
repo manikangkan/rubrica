@@ -1,4 +1,4 @@
-import auth from "../../../middleware/auth.middleware";
+import verifyAuthToken from "../../../middleware/verifyAuthToken.middleware";
 import Evoluter from "../../../models/Evoluter.model";
 import dbConnect from "../../../server-utils/connectDB";
 import { sendEmail } from "../../../server-utils/sendEmail";
@@ -6,10 +6,20 @@ import baseURL from "../../../utils/baseURL";
 
 export default async (req, res) => {
   const { method } = req;
-  auth(req, res);
+  // const isVerified = verifyAuthToken(req, res);
+  // if (!isVerified) {
+  //   return res.status(401).json({
+  //     success: false,
+  //     msg: "You are not authorized to access this route",
+  //   });
+  // }
+
   await dbConnect();
 
   switch (method) {
+    // @route   GET api/evoluters
+    // @desc    Fetch all evoluters
+    // @access  Private
     case "GET":
       try {
         const evoluters = await Evoluter.find({}).sort({ createdAt: -1 });
@@ -19,11 +29,16 @@ export default async (req, res) => {
       }
       break;
 
+    // @route   GET api/evoluters
+    // @desc    Create new evoluter
+    // @access  Private
     case "POST":
       try {
         const { name, email } = req.body;
 
-        const evoluter = await Evoluter.findOne({ email: email.toLowerCase() });
+        const evoluter = await Evoluter.findOne({
+          email: email.toLowerCase(),
+        });
         if (evoluter) {
           return res.status(400).json({
             success: false,
@@ -40,7 +55,7 @@ export default async (req, res) => {
           await sendEmail({
             email: newEvoluter.email,
             subject: "Welcome to Rubrica",
-            message: `Hi ${newEvoluter.name}, welcome to Rubrica. Please click on the link below to activate your account. ${baseURL}/home/${newEvoluter._id}`,
+            message: `Hi ${newEvoluter.name}, welcome to Rubrica. Please click on the link below to activate your account. ${baseURL}/evoluters/verification/${newEvoluter._id}`,
           });
 
           res.status(201).json({
@@ -49,10 +64,9 @@ export default async (req, res) => {
             msg: "Evoluter created successfully. Please check your email to activate your account.",
           });
         } catch (error) {
-          console.log(error);
           res.status(500).json({
             success: false,
-            msg: "Error sending invitation email",
+            msg: "Error sending invitation email, please let the admin know.",
           });
         }
       } catch (error) {
