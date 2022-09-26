@@ -23,8 +23,13 @@ const studentSchema = new mongoose.Schema(
     marksReceived: {
       type: [Number],
     },
-    evoluteBy: {
-      type: [String],
+    evolutedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Evoluter",
+    },
+    rubric: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Rubric",
     },
   },
   {
