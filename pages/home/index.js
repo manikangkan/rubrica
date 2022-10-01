@@ -1,10 +1,32 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import baseURL from "../../utils/baseURL";
 
-const Home = ({ evoluterName }) => {
+const Home = () => {
+  const router = useRouter();
+  const [response, setResponse] = useState();
+  useEffect(() => {
+    const getEvoluter = async () => {
+      try {
+        const token = window.localStorage.getItem("rubrica token");
+        if (token) {
+          const { userId } = jwtDecode(token);
+          const res = await axios.get(`${baseURL}/api/evoluters/${userId}`);
+          const { data } = await res.data;
+          setResponse(data.name);
+        } else router.push("/");
+      } catch (error) {
+        setResponse(error.response.data.msg);
+      }
+    };
+    getEvoluter();
+  }, []);
+  console.log(response);
   return (
     <div className="h-full grid place-content-center space-y-4">
-      <h1>Good morning, {evoluterName}</h1>
+      <h1>Good morning, {response}</h1>
       <p>
         Welcome to Rubrica, before moving forward please go through the
         following steps -
@@ -18,16 +40,5 @@ const Home = ({ evoluterName }) => {
     </div>
   );
 };
-
-// export const getServerSideProps = async (context) => {
-//   const { id } = context.query;
-//   const res = await axios.get(`${baseURL}/api/evoluters/${id}`);
-//   const { data } = await res.data;
-//   return {
-//     props: {
-//       evoluterName: data.name,
-//     },
-//   };
-// };
 
 export default Home;

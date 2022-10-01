@@ -22,7 +22,7 @@ export default async (req, res) => {
         const evoluter = await Evoluter.findById(req.query.id);
         res.status(200).json({ success: true, data: evoluter });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({ success: false, error });
       }
       break;
 
