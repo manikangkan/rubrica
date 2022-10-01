@@ -3,7 +3,8 @@ import Sidebar from "../sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  if (router.pathname === "/") return <>{children}</>;
+  if (router.pathname === "/" || router.pathname === "/verification")
+    return <>{children}</>;
   return (
     <div
       className="bg-slate-50 h-screen grid grid-cols-4 overflow-hidden

@@ -32,7 +32,7 @@ const VerificationPage = () => {
   }, [id]);
 
   return (
-    <div className="grid place-content-center h-full">
+    <div className="h-screen grid place-content-center">
       <h1>{verificationResponse.msg}</h1>
       {verificationResponse.success && (
         <button onClick={() => router.push("/home")}>Go to home</button>
