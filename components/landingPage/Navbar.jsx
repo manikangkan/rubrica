@@ -30,16 +30,6 @@ const Navbar = ({ user, setIsAuthModalOpen }) => {
           onClick={() => setIsAuthModalOpen(true)}>
           Administrator login
         </button>
-        <button
-          className="bg-transparent text-black"
-          onClick={() => setIsAuthModalOpen(true)}>
-          Invite
-        </button>
-        <button
-          className="bg-transparent text-black"
-          onClick={handleEvoluterLogin}>
-          Evoluter login
-        </button>
       </div>
     </nav>
   );
