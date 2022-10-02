@@ -1,4 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
+import baseURL from "../../utils/baseURL";
+import { useEffect, useState } from "react";
 
 const AddStudent = ({ setAddStudent }) => {
   const [formData, setFormData] = useState({
@@ -6,7 +8,10 @@ const AddStudent = ({ setAddStudent }) => {
     projectTitle: "",
     projectDescription: "",
     rollNumbers: "",
+    guide: "",
   });
+
+  const [guides, setGuides] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,7 +24,20 @@ const AddStudent = ({ setAddStudent }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log({ formData });
   };
+
+  useEffect(() => {
+    const getGuides = async () => {
+      try {
+        const { data } = await axios.get(`${baseURL}/api/guides`);
+        setGuides(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getGuides();
+  }, []);
 
   return (
     <div className="bg-white absolute right-0 top-0 bottom-0 h-full max-w-sm p-4 space-y-4">
@@ -39,6 +57,7 @@ const AddStudent = ({ setAddStudent }) => {
             placeholder="Eg. Manikangkan Das, Bidipta Saikia"
             name="names"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="space-y-2">
@@ -48,6 +67,7 @@ const AddStudent = ({ setAddStudent }) => {
             placeholder="Eg. Rubrica - 21st century rubric builder"
             name="projectTitle"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="space-y-2">
@@ -55,6 +75,7 @@ const AddStudent = ({ setAddStudent }) => {
           <textarea
             name="projectDescription"
             onChange={handleChange}
+            required
             defaultValue={
               "Eg. A web app that allows users to create and share their own stories"
             }
@@ -67,8 +88,21 @@ const AddStudent = ({ setAddStudent }) => {
             placeholder="Eg. 190102020, 190102021"
             name="rollNumbers"
             onChange={handleChange}
+            required
           />
         </div>
+        <div className="space-y-2 flex flex-col">
+          <label htmlFor="invitationEmail">Guide</label>
+          <select name="guide" id="guide" onChange={handleChange} required>
+            <option selected disabled>Select guide</option>
+            {guides.data?.map((guide) => (
+              <option value={guide._id} key={guide._id}>
+                {guide.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <button type="submit">Add</button>
       </form>
     </div>
