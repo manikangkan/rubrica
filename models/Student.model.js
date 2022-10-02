@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema(
   {
-    name: {
+    names: {
       type: [String],
       required: true,
     },
-    roll: {
+    rollNumbers: {
       type: [Number],
       required: true,
-    },
+    },  
     projectTitle: {
       type: String,
       required: true,
@@ -17,8 +17,9 @@ const studentSchema = new mongoose.Schema(
     projectDescription: {
       type: String,
     },
-    guides: {
-      type: [String],
+    guide: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Guide",
     },
     marksReceived: {
       type: [Number],

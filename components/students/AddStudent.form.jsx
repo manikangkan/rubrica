@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 
 const AddStudent = ({ setAddStudent }) => {
   const [formData, setFormData] = useState({
-    names: "",
+    names: [],
     projectTitle: "",
     projectDescription: "",
-    rollNumbers: "",
+    rollNumbers: [],
     guide: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState("");
   const [guides, setGuides] = useState([]);
 
   const handleChange = (e) => {
@@ -22,9 +24,14 @@ const AddStudent = ({ setAddStudent }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ formData });
+    try {
+      const { data } = await axios.post(`${baseURL}/api/students`, formData);
+      setResponse(data.msg);
+    } catch (error) {
+      setResponse(error.response?.data.msg);
+    }
   };
 
   useEffect(() => {
@@ -94,16 +101,18 @@ const AddStudent = ({ setAddStudent }) => {
         <div className="space-y-2 flex flex-col">
           <label htmlFor="invitationEmail">Guide</label>
           <select name="guide" id="guide" onChange={handleChange} required>
-            <option selected disabled>Select guide</option>
+            <option selected disabled>
+              Select guide
+            </option>
             {guides.data?.map((guide) => (
               <option value={guide._id} key={guide._id}>
-                {guide.name}
+                {guide.name}.{guide.email}
               </option>
             ))}
           </select>
         </div>
-
         <button type="submit">Add</button>
+        {response && <p>{response}</p>}
       </form>
     </div>
   );
