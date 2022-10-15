@@ -17,12 +17,6 @@ export default async (req, res) => {
         msg: "Evoluter does not exist",
       });
     }
-    if (!evoluter.isVerified) {
-      return res.status(400).json({
-        success: false,
-        msg: "Evoluter is not verified",
-      });
-    }
     const token = generateAuthToken(evoluter._id);
 
     res.status(200).json({
@@ -31,6 +25,6 @@ export default async (req, res) => {
       msg: "Great! You are now logged in",
     });
   } catch (error) {
-    res.status(400).json({ success: false });
+    res.status(400).json({ success: false, error });
   }
 };

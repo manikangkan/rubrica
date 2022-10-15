@@ -8,7 +8,7 @@ export default async (req, res) => {
   await dbConnect();
 
   switch (method) {
-    // @route   GET api/rubrics/:id
+    // @route   GET api/rubrics
     // @desc    Fetch all rubrics
     // @access  Public
     case "GET":
@@ -20,16 +20,19 @@ export default async (req, res) => {
       }
       break;
 
-    // @route   GET api/rubrics/:id
+    // @route   GET api/rubrics
     // @desc    Create a rubric
     // @access  Private
     case "POST":
-      verifyAuthToken(req, res);
+      // verifyAuthToken(req, res);
       try {
         const rubric = await Rubric.create(req.body);
         res.status(201).json({ success: true, data: rubric });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({
+          success: false,
+          error: error.message,
+        });
       }
       break;
 

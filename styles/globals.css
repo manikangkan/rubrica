@@ -24,7 +24,8 @@
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     @apply h-12 !w-full !rounded !px-6 !text-sm !border-slate-300 focus:!border-slate-800
     !ring-0 !outline-none !bg-transparent;
   }

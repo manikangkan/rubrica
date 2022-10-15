@@ -10,9 +10,9 @@ const StudentsPage = ({ studentsList }) => {
 
   const [addStudent, setAddStudent] = useState(false);
 
-  if (studentsList?.length === 0) {
-    return <h1>No students found</h1>;
-  }
+  // if (studentsList?.length === 0) {
+  //   return <h1>No students found</h1>;
+  // }
 
   return (
     <>
@@ -23,7 +23,7 @@ const StudentsPage = ({ studentsList }) => {
       {addStudent && <AddStudent setAddStudent={setAddStudent} />}
       {studentsList?.map((student) => (
         <Link href={`/students/${student._id}`} key={student._id}>
-          <div key={student._id}>{student.name}</div>
+          <div key={student._id}>{student.projectTitle}</div>
         </Link>
       ))}
     </>

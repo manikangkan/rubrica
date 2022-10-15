@@ -4,7 +4,7 @@ import baseURL from "../../utils/baseURL";
 
 const AuthForm = ({ data, setIsAuthModalOpen }) => {
   const isAdministratorLoggedIn =
-    typeof window !== "undefined" && localStorage.getItem("rubrica");
+    typeof window !== "undefined" && localStorage.getItem("rubrica admin");
   const [formData, setFormData] = useState(
     data.fields.reduce((acc, field) => {
       acc[field.name] = "";
@@ -25,13 +25,12 @@ const AuthForm = ({ data, setIsAuthModalOpen }) => {
     if (isAdministratorLoggedIn) {
       try {
         const url = `${baseURL}/api/evoluters`;
-        const payload = { ...formData };
         const headers = {
           headers: {
             Authorization: isAdministratorLoggedIn,
           },
         };
-        const response = await axios.post(url, payload, headers);
+        const response = await axios.post(url, formData, headers);
         setResponse(response.data.msg);
       } catch (error) {
         setResponse(error.response?.data.msg);
@@ -41,7 +40,7 @@ const AuthForm = ({ data, setIsAuthModalOpen }) => {
         const { data } = await axios.post(`${baseURL}/api/auth`, formData);
         setResponse(data.msg);
 
-        localStorage.setItem("rubrica", data.token);
+        localStorage.setItem("rubrica admin", data.token);
         setIsAuthModalOpen(false);
       } catch (error) {
         setResponse(error.response?.data.msg);

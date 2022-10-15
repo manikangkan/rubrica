@@ -10,11 +10,23 @@ const rubricSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Evoluter",
+    },
     criteriaAndMarks: {
       type: [
         {
           criteria: String,
-          marks: [Number],
+          marks: [
+            {
+              mark: Number,
+              checked: {
+                type: Boolean,
+                default: false,
+              },
+            },
+          ],
         },
       ],
       required: true,
