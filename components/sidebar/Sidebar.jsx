@@ -22,7 +22,7 @@ const Sidebar = () => {
       <SidebarLink
         name="Sign out"
         onClick={() => {
-          localStorage.removeItem("rubrica");
+          localStorage.removeItem("rubrica admin");
           router.push("/");
         }}
       />

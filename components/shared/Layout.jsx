@@ -7,7 +7,10 @@ const Layout = ({ children }) => {
   if (router.pathname === "/" || router.pathname === "/verification")
     return <>{children}</>;
 
-  if (typeof window !== "undefined" && !localStorage.getItem("rubrica token"))
+  if (
+    typeof window !== "undefined" &&
+    !localStorage.getItem("rubrica evoluter")
+  )
     router.push("/verification");
 
   return (

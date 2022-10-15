@@ -4,7 +4,7 @@ import AuthForm from "./Auth.form";
 
 const AuthModal = ({ setIsAuthModalOpen }) => {
   // catch the token from localStorage and set it to the state
-  const isAdministratorLoggedIn = localStorage.getItem("rubrica");
+  const isAdministratorLoggedIn = localStorage.getItem("rubrica admin");
 
   return (
     <div className="h-full w-full fixed top-0 flex flex-col justify-end">

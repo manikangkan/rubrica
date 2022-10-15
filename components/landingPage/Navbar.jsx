@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 
 const Navbar = ({ user, setIsAuthModalOpen }) => {
   const isAdministratorLoggedIn =
-    typeof window !== "undefined" && localStorage.getItem("rubrica");
+    typeof window !== "undefined" && localStorage.getItem("rubrica admin");
 
   return (
     <nav className="flex items-center justify-between m-4">

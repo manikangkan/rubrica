@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const getEvoluter = async () => {
       try {
-        const token = window.localStorage.getItem("rubrica token");
+        const token = window.localStorage.getItem("rubrica evoluter");
         if (token) {
           const { userId } = jwtDecode(token);
           const res = await axios.get(`${baseURL}/api/evoluters/${userId}`);
@@ -39,6 +39,10 @@ const Home = () => {
       </ul>
     </div>
   );
+};
+
+Home.getInitialProps = async () => {
+  return { title: "Home" };
 };
 
 export default Home;

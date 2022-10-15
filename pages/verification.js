@@ -19,7 +19,7 @@ const VerificationPage = () => {
           msg: res.data.msg,
         });
         const { token } = await res.data;
-        localStorage.setItem("rubrica token", token);
+        localStorage.setItem("rubrica evoluter", token);
       } catch (error) {
         console.log(error);
         setVerificationResponse({
@@ -32,13 +32,19 @@ const VerificationPage = () => {
   }, [id]);
 
   return (
-    <div className="h-screen grid place-content-center">
+    <div className="h-screen grid place-content-center space-y-5">
       <h1>{verificationResponse.msg}</h1>
       {verificationResponse.success && (
-        <button onClick={() => router.push("/home")}>Go to home</button>
+        <button className="w-fit mx-auto" onClick={() => router.push("/home")}>
+          Enter
+        </button>
       )}
     </div>
   );
+};
+
+VerificationPage.getInitialProps = async () => {
+  return { title: "Verification" };
 };
 
 export default VerificationPage;

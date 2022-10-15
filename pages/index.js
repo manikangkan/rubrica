@@ -11,13 +11,13 @@ const LandingPage = () => {
   const [user, setUser] = useState(null);
 
   const isAdministratorLoggedIn =
-    typeof window !== "undefined" && localStorage.getItem("rubrica");
-  
+    typeof window !== "undefined" && localStorage.getItem("rubrica admin");
+
   useEffect(() => {
     if (isAdministratorLoggedIn) {
       const fetchAdminDetails = async () => {
         const url = `${baseURL}/api/auth/${
-          jwtDecode(localStorage.getItem("rubrica")).userId
+          jwtDecode(localStorage.getItem("rubrica admin")).userId
         }`;
         const payload = { headers: { Authorization: isAdministratorLoggedIn } };
         const response = await axios.get(url, payload);
