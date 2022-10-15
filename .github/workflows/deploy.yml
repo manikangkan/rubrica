@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       deploy_production:
-        description: 'Deploy Production'
+        description: "Deploy Production"
         required: true
         type: boolean
         # default: false
@@ -44,7 +44,7 @@ jobs:
     if: |
       github.event_name != 'pull_request' &&
       (
-        github.ref_name == 'main' ||
+        github.ref_name == 'prod' ||
         startsWith(github.ref, 'refs/tags/')
       )
     runs-on: ubuntu-latest
@@ -85,6 +85,6 @@ jobs:
         uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-args: '--prod'
+          vercel-args: "--prod"
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
