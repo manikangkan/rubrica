@@ -16,7 +16,8 @@ const Navbar = ({ user, setIsAuthModalOpen }) => {
       ) : (
         <button
           className="bg-slate-200 border-none text-black"
-          onClick={() => setIsAuthModalOpen(true)}>
+          onClick={() => setIsAuthModalOpen(true)}
+        >
           Administrator login
         </button>
       )}

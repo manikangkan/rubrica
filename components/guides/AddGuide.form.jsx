@@ -35,7 +35,8 @@ const AddGuide = ({ setAddGuide }) => {
         <h4>Add new guide details</h4>
         <button
           className="bg-transparent text-slate-800"
-          onClick={() => setAddGuide(false)}>
+          onClick={() => setAddGuide(false)}
+        >
           Close
         </button>
       </div>

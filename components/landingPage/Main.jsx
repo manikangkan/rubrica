@@ -16,7 +16,8 @@ const Main = ({ setIsAuthModalOpen }) => {
       </div>
       <button
         className="rounded-full text-lg h-16 px-10"
-        onClick={() => setIsAuthModalOpen(true)}>
+        onClick={() => setIsAuthModalOpen(true)}
+      >
         Get started now
       </button>
     </div>

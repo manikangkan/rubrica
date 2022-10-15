@@ -52,7 +52,8 @@ const AddStudent = ({ setAddStudent }) => {
         <h4>Add new student details</h4>
         <button
           className="bg-transparent text-slate-800"
-          onClick={() => setAddStudent(false)}>
+          onClick={() => setAddStudent(false)}
+        >
           Close
         </button>
       </div>
