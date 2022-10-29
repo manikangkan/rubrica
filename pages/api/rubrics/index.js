@@ -13,7 +13,7 @@ export default async (req, res) => {
     // @access  Public
     case "GET":
       try {
-        const rubrics = await Rubric.find({});
+        const rubrics = await Rubric.find({}).sort({ createdAt: -1 });
         res.status(200).json({ success: true, data: rubrics });
       } catch (error) {
         res.status(400).json({ success: false });

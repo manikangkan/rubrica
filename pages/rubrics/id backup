@@ -1,0 +1,89 @@
+import axios from "axios";
+import { useMemo } from "react";
+import { useTable } from "react-table";
+import baseURL from "../../utils/baseURL";
+
+const RubricPage = ({ rubric }) => {
+  const { name, description, criteriaAndMarks } = rubric;
+  console.log(
+    "🚀 ~ file: [id].js ~ line 8 ~ RubricPage ~ criteriaAndMarks",
+    criteriaAndMarks[0]
+  );
+
+  // const notRequired = [
+  //   "_id",
+  //   "__v",
+  //   "createdAt",
+  //   "updatedAt",
+  //   "criteriaAndMarks",
+  // ];
+  // const filteredKeys = Object.keys(rubric).filter(
+  //   (key) => !notRequired.includes(key)
+  // );
+
+  const filterMarkForTableHearder = criteriaAndMarks[0].marks.map(
+    (mark) => mark.mark
+  );
+  const filterCriteriaForTableHearder = Object.keys(
+    criteriaAndMarks[0].criteria
+  );
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Criteria",
+        accessor: "criteria",
+      },
+      ...filterMarkForTableHearder.map((mark) => ({
+        Header: mark,
+        accessor: mark,
+      })),
+    ],
+    []
+  );
+
+  console.log({ columns });
+
+  console.log({ columns });
+
+  const data = useMemo(() => criteriaAndMarks, []);
+
+  console.log({ data });
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({
+      columns,
+      data,
+    });
+
+  return (
+    <section>
+      <h1>Rubric Page</h1>
+      {rubric ? (
+        <>
+          <div>
+            <h1>{rubric.name}</h1>
+            <p>{rubric.description}</p>
+          </div>
+          {/*   */}
+        </>
+      ) : (
+        <div>Rubric not found</div>
+      )}
+    </section>
+  );
+};
+
+export const getServerSideProps = async (context) => {
+  const { id } = context.query;
+  console.log(id);
+  const res = await axios.get(`${baseURL}/api/rubrics/${id}`);
+  const { data } = await res.data;
+  return {
+    props: {
+      rubric: data,
+    },
+  };
+};
+
+export default RubricPage;

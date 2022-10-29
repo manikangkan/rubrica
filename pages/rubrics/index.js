@@ -4,9 +4,16 @@ import { useMemo } from "react";
 import { useTable } from "react-table";
 import Search from "../../components/shared/Search.form";
 import baseURL from "../../utils/baseURL";
+import CreateRubric from "./createRubric";
 
 const RubricsPage = ({ rubricsList }) => {
-  const notRequired = ["_id", "criteriaAndMarks", "__v"];
+  const notRequired = [
+    "_id",
+    "criteriaAndMarks",
+    "__v",
+    "createdAt",
+    "updatedAt",
+  ];
   const filteredKeys = Object.keys(rubricsList[0]).filter(
     (key) => !notRequired.includes(key)
   );
@@ -36,7 +43,7 @@ const RubricsPage = ({ rubricsList }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <Search />
         <button onClick={() => setAddStudent(!addStudent)}>Add</button>
       </div>
@@ -78,11 +85,18 @@ const RubricsPage = ({ rubricsList }) => {
                     </td>
                   );
                 })}
+                {/* link to open each rubric */}
+                <td>
+                  <Link href={`/rubrics/${row.original._id}`} passHref>
+                    <a className="px-6 py-2 text-white bg-green-500">View</a>
+                  </Link>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <CreateRubric />
     </>
   );
 };
