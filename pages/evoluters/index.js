@@ -36,8 +36,11 @@ const EvolutersPage = ({ evolutersList }) => {
           <div key={evoluter._id}>{evoluter.name}</div>
         </Link>
       ))} */}
-      <table {...getTableProps()}>
-        <thead>
+      <table
+        {...getTableProps()}
+        className="min-w-full divide-y divide-gray-200"
+      >
+        <thead className="bg-gray-50">
           {headerGroups.map((headerGroup) => {
             const { key, ...restHeaderGroupProps } =
               headerGroup.getHeaderGroupProps();
@@ -46,7 +49,12 @@ const EvolutersPage = ({ evolutersList }) => {
                 {headerGroup.headers.map((column) => {
                   const { key, ...restColumn } = column.getHeaderProps();
                   return (
-                    <th key={key} {...restColumn}>
+                    <th
+                      key={key}
+                      {...restColumn}
+                      scope="col"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                    >
                       {column.render("Header")}
                     </th>
                   );
@@ -55,7 +63,10 @@ const EvolutersPage = ({ evolutersList }) => {
             );
           })}
         </thead>
-        <tbody {...getTableBodyProps}>
+        <tbody
+          {...getTableBodyProps}
+          className="bg-white divide-y divide-gray-200"
+        >
           {rows.map((row) => {
             prepareRow(row);
             const { key, ...restRowProps } = row.getRowProps();
@@ -64,7 +75,11 @@ const EvolutersPage = ({ evolutersList }) => {
                 {row.cells.map((cell) => {
                   const { key, ...restCellProps } = cell.getCellProps();
                   return (
-                    <td key={key} {...restCellProps}>
+                    <td
+                      key={key}
+                      {...restCellProps}
+                      className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6"
+                    >
                       {cell.render("Cell")}
                     </td>
                   );

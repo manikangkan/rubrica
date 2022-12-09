@@ -52,8 +52,11 @@ const RubricsPage = ({ rubricsList }) => {
           <div key={rubric._id}>{rubric.name}</div>
         </Link>
       ))} */}
-      <table {...getTableProps()}>
-        <thead>
+      <table
+        {...getTableProps()}
+        className="min-w-full divide-y divide-gray-200"
+      >
+        <thead className="bg-gray-50">
           {headerGroups.map((headerGroup) => {
             const { key, ...restHeaderGroupProps } =
               headerGroup.getHeaderGroupProps();
@@ -62,7 +65,12 @@ const RubricsPage = ({ rubricsList }) => {
                 {headerGroup.headers.map((column) => {
                   const { key, ...restColumn } = column.getHeaderProps();
                   return (
-                    <th key={key} {...restColumn}>
+                    <th
+                      key={key}
+                      {...restColumn}
+                      scope="col"
+                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                    >
                       {column.render("Header")}
                     </th>
                   );
@@ -71,7 +79,10 @@ const RubricsPage = ({ rubricsList }) => {
             );
           })}
         </thead>
-        <tbody {...getTableBodyProps}>
+        <tbody
+          {...getTableBodyProps}
+          className="bg-white divide-y divide-gray-200"
+        >
           {rows.map((row) => {
             prepareRow(row);
             const { key, ...restRowProps } = row.getRowProps();
@@ -80,7 +91,11 @@ const RubricsPage = ({ rubricsList }) => {
                 {row.cells.map((cell) => {
                   const { key, ...restCellProps } = cell.getCellProps();
                   return (
-                    <td key={key} {...restCellProps}>
+                    <td
+                      key={key}
+                      {...restCellProps}
+                      className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6"
+                    >
                       {cell.render("Cell")}
                     </td>
                   );
@@ -88,7 +103,12 @@ const RubricsPage = ({ rubricsList }) => {
                 {/* link to open each rubric */}
                 <td>
                   <Link href={`/rubrics/${row.original._id}`} passHref>
-                    <a className="px-6 py-2 text-white bg-green-500">View</a>
+                    <a
+                      type="button"
+                      className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-black border border-transparent rounded-sm shadow-sm hover:bg-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                    >
+                      View
+                    </a>
                   </Link>
                 </td>
               </tr>
